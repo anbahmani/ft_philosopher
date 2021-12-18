@@ -13,7 +13,12 @@ vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
 # library -----------------------------------------------------------
 
-SRC			= 	
+SRC			= 	philo.c \
+				ft_atoi.c \
+				print_error.c \
+				eat.c \
+				sleep.c \
+				think.c
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
@@ -52,7 +57,7 @@ show:
 	@echo "\n-----\n"
 	@echo "$(_BLUE)Compiling : \n$(_YELLOW)$(CC) $(CFLAGS) $(OBJ) -o $(NAME)$(_WHITE)"
 
-$(NAME): install $(OBJ)
+$(NAME): $(OBJ)
 	@echo "-----\nCreating Binary File $(_YELLOW)$@$(_WHITE) ... \c"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@echo "$(_GREEN)DONE$(_WHITE)\n-----"

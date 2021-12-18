@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/18 09:19:28 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/18 10:08:26 by abahmani         ###   ########.fr       */
+/*   Created: 2021/12/18 10:04:23 by abahmani          #+#    #+#             */
+/*   Updated: 2021/12/18 10:22:46 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#include "philo.h"
 
-# include <stdio.h>
-# include <sys/time.h>
-# include <pthread.h>
-# include <string.h>
-# include <unistd.h>
-# include <stdlib.h>
-
-# define TRUE 1
-# define FALSE 0
-
-typedef struct s_args
+int	main(int ac, char **av)
 {
-	int	nb_philo;
-	int	time_to_die;
-	int	time_to_eat;
-	int time_to_sleep;
-	int	optional_arg;
-	int	nb_eat;
-}	t_args;
+	t_args	args;
 
-
-int		ft_atoi(const char *str);
-void	print_error(char *msg);
-
-#endif
+	if (ac < 5 || ac > 6)
+	{
+		print_error("Bad number of arguments.");
+		return (1);
+	}
+	args.nb_philo = ft_atoi(av[1]);
+	args.time_to_die = ft_atoi(av[2]);
+	args.time_to_eat = ft_atoi(av[3]);
+	args.time_to_sleep = ft_atoi(av[4]);
+	if (ac == 6)
+	{
+		args.optional_arg = TRUE;
+		args.nb_eat = ft_atoi(av[5]);
+	}
+}
