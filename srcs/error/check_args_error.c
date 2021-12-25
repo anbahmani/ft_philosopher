@@ -6,17 +6,17 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/24 00:57:26 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/25 17:14:00 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "error.h"
+#include "philo.h"
 
 static bool	check_args_number(int ac)
 {
 	if (ac == 5 || ac == 6)
 		return (true);
-	print_error("Le nombre d'arguments est incorrectes.");
+	print_error("Bad number of argument");
 	return (false);
 }
 
@@ -29,7 +29,7 @@ static bool	check_is_args_number(int ac, char **av)
 	{
 		if (!is_number(av[i]))
 		{
-			print_error("Les arguments sont incorrectes.");
+			print_error("Bad arguments");
 			return (false);
 		}
 		i++;

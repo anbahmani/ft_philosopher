@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:31:50 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/24 22:11:47 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/25 17:14:47 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_args
 	int		nb_philo;
 	int		time_to_die;
 	int		time_to_eat;
-	int 	time_to_sleep;
+	int		time_to_sleep;
 	bool	optional_arg;
 	int		nb_eat;
 }	t_args;
@@ -50,7 +50,8 @@ typedef struct s_philo
 	struct s_philo	*previous;
 }	t_philo;
 
-
 int		ft_atoi(const char *str);
+void	init_args(int ac, char **av, t_args *args);
+void	init_time(t_time *time);
 
 #endif

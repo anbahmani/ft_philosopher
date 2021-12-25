@@ -18,7 +18,10 @@ SRC			= 	philo.c \
 				print_error.c \
 				eat.c \
 				sleep.c \
-				think.c
+				think.c \
+				check_args_error.c \
+				is_number.c \
+				struct_init.c
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 

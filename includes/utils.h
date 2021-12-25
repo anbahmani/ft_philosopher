@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:41:05 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/24 00:46:15 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/25 13:42:28 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,6 @@
 
 int		ft_atoi(const char *str);
 bool	is_number(const char *str);
+bool	ft_isdigit(int c);
 
 #endif

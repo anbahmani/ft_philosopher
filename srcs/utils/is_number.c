@@ -6,13 +6,13 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:42:33 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/24 00:46:01 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/25 17:14:03 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 
-static bool	ft_isdigit(int c)
+bool	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (true);
