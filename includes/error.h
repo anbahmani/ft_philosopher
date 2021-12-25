@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_error.c                                      :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/18 10:06:44 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/24 00:39:54 by abahmani         ###   ########.fr       */
+/*   Created: 2021/12/24 00:32:35 by abahmani          #+#    #+#             */
+/*   Updated: 2021/12/24 00:58:22 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-void	print_error(char *msg)
-{
-	printf("Error !\n%s\n", msg);
-}
+# include "philo.h"
+
+bool	check_args(int ac, char **av);
+void	print_error(char *msg);
+
+#endif
