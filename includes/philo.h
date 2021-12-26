@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:31:50 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/25 17:14:47 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/26 13:08:53 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,6 @@ typedef struct s_philo
 int		ft_atoi(const char *str);
 void	init_args(int ac, char **av, t_args *args);
 void	init_time(t_time *time);
+void	free_struct(t_args *args, t_time *time, t_philo *philo);
 
 #endif

@@ -7,8 +7,6 @@ INC_DIR			= 	$(shell find includes -type d) \
 
 OBJ_DIR			=	obj
 
-#LIB_DIR			=	lib/libft lib/$(MLX_DIR)
-
 vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
 # library -----------------------------------------------------------
@@ -21,7 +19,8 @@ SRC			= 	philo.c \
 				think.c \
 				check_args_error.c \
 				is_number.c \
-				struct_init.c
+				struct_init.c \
+				free_struct.c
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 

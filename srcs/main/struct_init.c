@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 15:13:09 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/25 17:14:27 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/26 12:37:06 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,11 @@ void	init_time(t_time *time)
 	{
 		return (print_error("Bad time allocation."));
 	}
+	memset(time, 0, sizeof(t_time));
 	if (gettimeofday(&tv, NULL) == -1)
 	{
 		free(time);
 		return (print_error("Bad time allocation."));
 	}
-	time->first = 0;
-	time->last = 0;
 	time->start = (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }

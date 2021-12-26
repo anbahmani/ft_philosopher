@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/25 17:14:00 by abahmani         ###   ########.fr       */
+/*   Updated: 2021/12/26 15:43:56 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ static bool	check_args_number(int ac)
 		return (true);
 	print_error("Bad number of argument");
 	return (false);
+}
+
+static bool check_args_value(char *nb, int index)
+{
+
+	if (index == 1 && ft_atoi(nb) > 200)
+	{
+		print_error("Incorrect number of philosophers {0-200}.");
+		return (false);
+	}
+	else if (index <= 4 && ft_atoi(nb) < 60)
+	{
+		print_error("Incorrect time {+60}.");
+		return (false);
+	}
+	return (true);
 }
 
 static bool	check_is_args_number(int ac, char **av)
@@ -32,6 +48,8 @@ static bool	check_is_args_number(int ac, char **av)
 			print_error("Bad arguments");
 			return (false);
 		}
+		if (!check_args_value(av[i], i))
+			return (false);
 		i++;
 	}
 	return (true);
