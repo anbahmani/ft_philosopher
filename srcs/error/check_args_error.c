@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/02 15:18:56 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/02 15:34:02 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@ static bool	check_args_number(int ac)
 	return (false);
 }
 
+/* 
+	Paramaters	:
+		- char *nb	=> the value of the argument which has to be checked
+		- int index	=> the position of the argument in argv (from main function)
+	Returns	:
+		- true if the argument is correct
+		- false if not
+	Description :
+		- We check the value of the argument "number of philosophers" (has to
+			be between 0 and 200)
+		- We check the values of the time's arguments (have to be between > 60)
+*/
 static bool	check_args_value(char *nb, int index)
 {
 	if (index == 1 && ft_atoi(nb) > 200)
@@ -54,6 +66,7 @@ static bool	check_is_args_number(int ac, char **av)
 	return (true);
 }
 
+//check args
 bool	check_args(int ac, char **av)
 {
 	if (!check_args_number(ac) || !check_is_args_number(ac, av))
