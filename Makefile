@@ -30,56 +30,45 @@ CFLAGS		=	-Wall -Wextra -Werror
 
 IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
 
-# Colors ------------------------------------------------------------
-
-_GREY	=	$'\e[30m
-_RED	=	$'\e[31m
-_GREEN	=	$'\e[32m
-_YELLOW	=	$'\e[33m
-_BLUE	=	$'\e[34m
-_PURPLE	=	$'\e[35m
-_CYAN	=	$'\e[36m
-_WHITE	=	$'\e[37m
-
 # main part ---------------------------------------------------------
 
 all:
-	@echo "\n$(_BLUE)___$(NAME) Setting___\n$(_WHITE)"
+	@echo "\n___$(NAME) Setting___\n"
 	@make  $(NAME)
 
 bonus: fclean
-	@echo "\n$(_BLUE)___$(NAME) Setting___\n$(_WHITE)"
+	@echo "\n___$(NAME) Setting___\n"
 	@make $(NAME_BONUS)
 
 show:
-	@echo "$(_BLUE)SRC :\n$(_YELLOW)$(SRC)$(_WHITE)"
-	@echo "$(_BLUE)OBJ :\n$(_YELLOW)$(OBJ)$(_WHITE)"
-	@echo "$(_BLUE)CFLAGS :\n$(_YELLOW)$(CFLAGS)$(_WHITE)"
-	@echo "$(_BLUE)IFLAGS :\n$(_YELLOW)$(IFLAGS)$(_WHITE)"
+	@echo "SRC :\n$(SRC)"
+	@echo "OBJ :\n$(OBJ)"
+	@echo "CFLAGS :\n$(CFLAGS)"
+	@echo "IFLAGS :\n$(IFLAGS)"
 	@echo "\n-----\n"
-	@echo "$(_BLUE)Compiling : \n$(_YELLOW)$(CC) $(CFLAGS) $(OBJ) -o $(NAME)$(_WHITE)"
+	@echo "Compiling : \n$(CC) $(CFLAGS) $(OBJ) -o $(NAME)"
 
 $(NAME): $(OBJ)
-	@echo "-----\nCreating Binary File $(_YELLOW)$@$(_WHITE) ... \c"
+	@echo "-----\nCreating Binary File $@ ... \c"
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
+	@echo "DONE\n-----"
 
 $(OBJ_DIR)/%.o : %.c
-	@echo "Compiling $(_YELLOW)$@$(_WHITE) ... \c"
+	@echo "Compiling $@ ... \c"
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(IFLAGS) -o $@ -c $<
-	@echo "$(_GREEN)DONE$(_WHITE)"
+	@echo "DONE"
 
 re:	fclean all
 
 clean:
-	@echo "$(_WHITE)Deleting Objects Directory $(_YELLOW)$(OBJ_DIR)$(_WHITE) ... \c"
+	@echo "Deleting Objects Directory $(OBJ_DIR) ... \c"
 	@$(foreach file, $(OBJ), rm -rf $(file))
-	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
+	@echo "DONE\n-----"
 
 fclean:	clean
-	@echo "Deleting Binary File $(_YELLOW)$(NAME)$(_WHITE) ... \c"
+	@echo "Deleting Binary File $(NAME) ... \c"
 	@rm -f $(NAME)
-	@echo "$(_GREEN)DONE$(_WHITE)\n-----"
+	@echo "DONE\n-----"
 
 .PHONY: all bonus show re clean flcean

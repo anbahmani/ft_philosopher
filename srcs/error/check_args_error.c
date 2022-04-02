@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/26 15:43:56 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/03/31 14:09:26 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	check_args_number(int ac)
 {
 	if (ac == 5 || ac == 6)
 		return (true);
-	print_error("Bad number of argument");
+	printf_syntax_error();
 	return (false);
 }
 
@@ -45,7 +45,7 @@ static bool	check_is_args_number(int ac, char **av)
 	{
 		if (!is_number(av[i]))
 		{
-			print_error("Bad arguments");
+			printf_syntax_error();
 			return (false);
 		}
 		if (!check_args_value(av[i], i))
