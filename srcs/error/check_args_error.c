@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2022/03/31 14:09:26 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/02 15:18:56 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ static bool	check_args_number(int ac)
 	return (false);
 }
 
-static bool check_args_value(char *nb, int index)
+static bool	check_args_value(char *nb, int index)
 {
-
 	if (index == 1 && ft_atoi(nb) > 200)
 	{
 		print_error("Incorrect number of philosophers {0-200}.");
