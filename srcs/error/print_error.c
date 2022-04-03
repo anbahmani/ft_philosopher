@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 10:06:44 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/02 15:18:39 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:30:57 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
 void	print_error(char *msg)
 {

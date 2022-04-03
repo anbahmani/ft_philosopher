@@ -6,12 +6,24 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/02 15:34:02 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:30:57 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
 
+/* 
+	Paramaters	:
+		- int ac => the number of arguments in the main function
+	Description :
+		- Checks the number of arguments in the main function (has to be 5 or 
+			6)
+		- Calls the function printf_syntax_error() if the number of arguments is
+			incorrect
+	Returns	:
+		- true if the number of arguments in the main function is 5 or 6
+		- false if not
+*/
 static bool	check_args_number(int ac)
 {
 	if (ac == 5 || ac == 6)
@@ -24,13 +36,13 @@ static bool	check_args_number(int ac)
 	Paramaters	:
 		- char *nb	=> the value of the argument which has to be checked
 		- int index	=> the position of the argument in argv (from main function)
+	Description :
+		- Checks the value of the argument "number of philosophers" (has to
+			be between 0 and 200)
+		- Checks the values of the time's arguments (have to be between > 60)
 	Returns	:
 		- true if the argument is correct
 		- false if not
-	Description :
-		- We check the value of the argument "number of philosophers" (has to
-			be between 0 and 200)
-		- We check the values of the time's arguments (have to be between > 60)
 */
 static bool	check_args_value(char *nb, int index)
 {
@@ -47,6 +59,18 @@ static bool	check_args_value(char *nb, int index)
 	return (true);
 }
 
+/* 
+	Paramaters	:
+		- int ac	=> the number of arguments in the main function
+		- char **av	=> arguments from the main function
+	Description :
+		- Checks the arguments from main function are composed by digits char
+		- Calls the function check_args_value(char *nb, int index) for each
+			arguments from main function
+	Returns	:
+		- true if all arguments are corrects
+		- false if not
+*/
 static bool	check_is_args_number(int ac, char **av)
 {
 	int	i;
@@ -66,7 +90,17 @@ static bool	check_is_args_number(int ac, char **av)
 	return (true);
 }
 
-//check args
+/* 
+	Paramaters	:
+		- int ac	=> the number of arguments in the main function
+		- char **av	=> arguments from the main function
+	Description :
+		- Calls the functions check_is_args_number(int ac, char **av) and 
+			check_args_number(int ac)
+	Returns	:
+		- true if both called function return true
+		- false if not
+*/
 bool	check_args(int ac, char **av)
 {
 	if (!check_args_number(ac) || !check_is_args_number(ac, av))

@@ -6,14 +6,14 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:35 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/26 13:37:27 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/03 15:30:57 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-# include "philo.h"
+# include "../includes/philo.h"
 
 # define ERROR_ARG_SYNTAX 
 

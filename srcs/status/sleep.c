@@ -6,8 +6,9 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 10:14:33 by abahmani          #+#    #+#             */
-/*   Updated: 2021/12/18 10:14:45 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/03 16:35:27 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "../includes/philo.h"
+
