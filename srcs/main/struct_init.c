@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 15:13:09 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/03 15:30:57 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/09 18:55:03 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,32 @@ void	init_args(int ac, char **av, t_args *args)
 		args->optional_arg = true;
 		args->nb_eat = ft_atoi(av[5]);
 	}
+	args->end = false;
 }
 
-void	init_time(t_time *time)
+void	init_time(unsigned long *time)
 {
 	struct timeval	tv;
 
-	time = malloc(sizeof(t_time));
+	time = malloc(sizeof(unsigned long));
 	if (time == NULL)
 	{
 		return (print_error("Bad time allocation."));
 	}
-	memset(time, 0, sizeof(t_time));
 	if (gettimeofday(&tv, NULL) == -1)
 	{
 		free(time);
 		return (print_error("Bad time allocation."));
 	}
-	time->start = (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	*time = (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	init_philo_struct(t_args *args)
+{
+	int	index = 1;
+
+	while (index <= args->nb_philo)
+	{
+		
+	}
 }

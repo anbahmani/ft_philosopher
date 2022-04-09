@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/03 15:30:57 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/09 17:54:21 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,29 @@ static bool	check_args_number(int ac)
 	return (false);
 }
 
+static bool	check_overflow(char *s)
+{
+	int	i;
+	int	nb;
+
+	i = 0;
+	nb = 0;
+	if (!ft_strncmp("-2147483648", s, ft_strlen(s)))
+		return (true);
+	if (s[0] == '-')
+	{
+		i++;
+	}
+	while (s[i])
+	{
+		nb = nb * 10 + (s[i] - '0');
+		if (nb < 0)
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
 /* 
 	Paramaters	:
 		- char *nb	=> the value of the argument which has to be checked
@@ -54,6 +77,11 @@ static bool	check_args_value(char *nb, int index)
 	else if (index <= 4 && ft_atoi(nb) < 60)
 	{
 		print_error("Incorrect time {+60}.");
+		return (false);
+	}
+	else if (index == 5 && ft_atoi(nb) >= 0)
+	{
+		print_error("Incorrect value of number of eat {+0}");
 		return (false);
 	}
 	return (true);
@@ -81,6 +109,11 @@ static bool	check_is_args_number(int ac, char **av)
 		if (!is_number(av[i]))
 		{
 			printf_syntax_error();
+			return (false);
+		}
+		if (!check_overflow(av[i]))
+		{
+			print_error("Int overflow on a argument.");
 			return (false);
 		}
 		if (!check_args_value(av[i], i))

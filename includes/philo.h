@@ -31,28 +31,40 @@ typedef struct s_args
 	int		time_to_sleep;
 	bool	optional_arg;
 	int		nb_eat;
-}	t_args;
+	bool	end;
+	unsigned long	start_time;
+	pthread_mutex_t	m_write_log;
+	pthread_mutex_t m_time_eat;
+	pthread_mutex_t	m_time_sleep;
+	pthread_mutex_t	m_time_think;
+	pthread_mutex_t m_optional_arg;
+	pthread_mutex_t m_end;
+	pthread_mutex_t	m_start_time;
 
-typedef struct s_time
-{
-	unsigned long	start;
-	unsigned long	first;
-	unsigned long	last;
-}	t_time;
+}	t_args;
 
 typedef struct s_philo
 {
 	int				index;
+	pthread_t		th_philo;
+	pthread_mutex_t	fork;
 	bool			alive;
 	t_args			arg;
-	t_time			time;
+	unsigned long	first_time;
+	unsigned long	last_time;
 	struct s_philo	*next;
-	struct s_philo	*previous;
+}	t_philo;
+
+typedef struct s_struct
+{
+	t_args	args;
+	t_philo	*first;
 }	t_philo;
 
 int		ft_atoi(const char *str);
 void	init_args(int ac, char **av, t_args *args);
-void	init_time(t_time *time);
-void	free_struct(t_args *args, t_time *time, t_philo *philo);
+void	init_time(unsigned long *time);
+void	free_struct(t_args *args, t_philo *philo);
+void	*activities_loop();
 
 #endif

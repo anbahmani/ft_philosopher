@@ -6,16 +6,15 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 13:06:38 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/03 15:30:57 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/09 18:53:18 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	free_struct(t_args *args, t_time *time, t_philo *philo)
+void	free_struct(t_args *args, t_philo *philo)
 {
-	if (time != NULL)
-		free(time);
+	free(args->start_time);
 	if (args != NULL)
 		free(args);
 	if (philo != NULL)
