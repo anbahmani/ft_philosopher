@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 10:04:23 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/10 11:04:14 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/10 11:28:14 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,14 @@ void	*activities_loop(t_philo *philo)
 		pthread_mutex_lock(&philo->args.m_time_eat);
 		tmp_time = philo->args.time_to_eat;
 		pthread_mutex_unlock(&philo->args.m_time_eat);
-		usleep(tmp_time / 5);
+		usleep(tmp_time / 10);
+	}
+	while (true)
+	{
+		philo->first_time = get_current_time();
+		eat(philo);
+		sleep(philo);
+		think(philo);
 	}
 }
 

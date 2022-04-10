@@ -52,6 +52,7 @@ typedef struct s_philo
 	t_args			args;
 	unsigned long	first_time;
 	unsigned long	last_time;
+	int				curr_nb_eat;
 	struct s_philo	*next;
 }	t_philo;
 
@@ -69,5 +70,8 @@ void	*activities_loop();
 void	init_philo(t_struct *s);
 void	start_routine(t_struct *s);
 void	join_threads(t_philo *philo, int index);
+void	taking_forks(t_philo *philo);
+void	eat(t_philo *philo);
+void	write_philo_status(t_philo *philo, char *status);
 
 #endif
