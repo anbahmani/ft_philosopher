@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   get_current_time.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 00:32:35 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/10 03:44:01 by abahmani         ###   ########.fr       */
+/*   Created: 2022/04/10 03:23:17 by abahmani          #+#    #+#             */
+/*   Updated: 2022/04/10 03:23:36 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#include "philo.h"
 
-# include "philo.h"
+unsigned long	get_current_time(void)
+{
+	struct timeval	tv;
 
-# define ERROR_ARG_SYNTAX 
-
-bool	check_args(int ac, char **av);
-void	print_error(char *msg);
-void	printf_syntax_error(void);
-
-#endif
+	if (gettimeofday(&tv, NULL) == -1)
+	{
+		print_error("Bad time allocation.");
+		return (NULL);
+	}
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}

@@ -49,7 +49,7 @@ typedef struct s_philo
 	pthread_t		th_philo;
 	pthread_mutex_t	fork;
 	bool			alive;
-	t_args			arg;
+	t_args			args;
 	unsigned long	first_time;
 	unsigned long	last_time;
 	struct s_philo	*next;
@@ -58,13 +58,16 @@ typedef struct s_philo
 typedef struct s_struct
 {
 	t_args	args;
-	t_philo	*first;
-}	t_philo;
+	t_philo	*first_philo;
+}	t_struct;
 
 int		ft_atoi(const char *str);
 void	init_args(int ac, char **av, t_args *args);
-void	init_time(unsigned long *time);
+unsigned int	get_current_time(void);
 void	free_struct(t_args *args, t_philo *philo);
 void	*activities_loop();
+void	init_philo(t_struct *s);
+void	start_routine(t_struct *s);
+void	join_threads(t_philo *philo, int index);
 
 #endif
