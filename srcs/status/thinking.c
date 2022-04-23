@@ -1,14 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sleep.c                                            :+:      :+:    :+:   */
+/*   thinking.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/18 10:14:33 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/03 16:35:27 by abahmani         ###   ########.fr       */
+/*   Created: 2021/12/18 10:14:19 by abahmani          #+#    #+#             */
+/*   Updated: 2022/04/23 04:10:50 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "philo.h"
 
+void	thinking(t_philo *philo)
+{
+	write_philo_status(philo, "is thinking");
+}

@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/24 00:41:05 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/18 17:17:07 by abahmani         ###   ########.fr       */
+/*   Created: 2022/04/18 15:56:04 by abahmani          #+#    #+#             */
+/*   Updated: 2022/04/18 15:56:16 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include "philo.h"
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
 
-int		ft_atoi(const char *str);
-bool	is_number(const char *str);
-bool	ft_isdigit(int c);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-size_t	ft_strlen(const char *s);
-
-#endif
+	i = 0;
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
+}

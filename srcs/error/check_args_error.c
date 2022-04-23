@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/09 17:54:21 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/19 17:22:51 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "philo.h"
 
 /* 
 	Paramaters	:
@@ -74,12 +74,12 @@ static bool	check_args_value(char *nb, int index)
 		print_error("Incorrect number of philosophers {0-200}.");
 		return (false);
 	}
-	else if (index <= 4 && ft_atoi(nb) < 60)
+	else if (index > 1 && index <= 4 && ft_atoi(nb) < 60)
 	{
 		print_error("Incorrect time {+60}.");
 		return (false);
 	}
-	else if (index == 5 && ft_atoi(nb) >= 0)
+	else if (index == 5 && ft_atoi(nb) <= 0)
 	{
 		print_error("Incorrect value of number of eat {+0}");
 		return (false);

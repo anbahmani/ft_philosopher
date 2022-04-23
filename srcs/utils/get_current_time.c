@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 03:23:17 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/10 03:23:36 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/18 17:13:24 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ unsigned long	get_current_time(void)
 	if (gettimeofday(&tv, NULL) == -1)
 	{
 		print_error("Bad time allocation.");
-		return (NULL);
+		return (0);
 	}
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }

@@ -6,18 +6,21 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 15:13:09 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/10 03:24:04 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/23 04:07:05 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philo.h"
+#include "philo.h"
 
-void	init_args(int ac, char **av, t_args *args)
+t_args	*init_args(int ac, char **av)
 {
+	t_args *args;
+	
 	args = malloc(sizeof(t_args));
 	if (args == NULL)
 	{
-		return (print_error("Bad arguments allocation."));
+		print_error("Bad arguments allocation.");
+		return (NULL);
 	}
 	args->nb_philo = ft_atoi(av[1]);
 	args->time_to_die = ft_atoi(av[2]);
@@ -30,38 +33,51 @@ void	init_args(int ac, char **av, t_args *args)
 	}
 	args->end = false;
 	args->start_time = get_current_time();
+	return (args);
 }
 
-static void	init_philo(t_philo *p, int index, t_args args)
+void	init_philo(t_philo **p, int index, t_args args)
 {
-	p = malloc(sizeof(t_philo));
+	*p = malloc(sizeof(t_philo));
 	if (!p)
 	{
 		p = NULL;
 		return ;
 	}
-	p->index = index;
-	p->alive = true;
-	p->args = args;
-	p->first_time = 0;
-	p->last_time = 0;
+	(*p)->index = index;
+	(*p)->args = args;
+	(*p)->first_time = 0;
+	(*p)->last_time = 0;
+	pthread_mutex_init(&(*p)->fork, NULL);
+	pthread_mutex_init(&(*p)->m_nb_eat, NULL);
 }
 
 void	init_all_philo(t_struct *s)
 {
 	int	index;
 	t_philo *current_philo;
-	
-	init_philo(s->first_philo, 1, s->args);
-	if (!s->first_philo)
+	init_philo(&s->first_philo, 1, s->args);
+	if (s->first_philo == NULL)
 		return (free_struct(&s->args, s->first_philo));
 	current_philo = s->first_philo;
 	index = 1;
 	while (++index <= s->args.nb_philo)
 	{
-		init_philo(current_philo->next, index, s->args);
+		init_philo(&current_philo->next, index, s->args);
 		if (!current_philo->next)
 			return (free_struct(&s->args, s->first_philo));
 		current_philo = current_philo->next;
 	}
+	current_philo->next = s->first_philo;
+}
+
+void	init_args_mutex(t_args *args)
+{
+	pthread_mutex_init(&args->m_write_log, NULL);
+	pthread_mutex_init(&args->m_time_eat, NULL);
+	pthread_mutex_init(&args->m_time_sleep, NULL);
+	pthread_mutex_init(&args->m_time_think, NULL);
+	pthread_mutex_init(&args->m_optional_arg, NULL);
+	pthread_mutex_init(&args->m_end, NULL);
+	pthread_mutex_init(&args->m_start_time, NULL);
 }

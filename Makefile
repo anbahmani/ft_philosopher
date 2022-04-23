@@ -11,16 +11,21 @@ vpath %.c $(foreach dir, $(SRC_DIR), $(dir):)
 
 # library -----------------------------------------------------------
 
-SRC			= 	philo.c \
-				ft_atoi.c \
+SRC			= 	ft_atoi.c \
 				print_error.c \
-				eat.c \
-				sleep.c \
-				think.c \
+				eating.c \
+				sleeping.c \
+				thinking.c \
 				check_args_error.c \
 				is_number.c \
 				struct_init.c \
-				free_struct.c
+				free_struct.c \
+				ft_strlen.c \
+				ft_strncmp.c \
+				get_current_time.c \
+				write_status.c \
+				philo.c \
+				check_end.c \
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
