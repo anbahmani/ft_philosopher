@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_current_time.c                                 :+:      :+:    :+:   */
+/*   ft_usleep.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 03:23:17 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/24 01:33:11 by abahmani         ###   ########.fr       */
+/*   Created: 2022/04/23 22:25:16 by abahmani          #+#    #+#             */
+/*   Updated: 2022/04/23 22:26:53 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	get_current_time(long time)
+void	ft_usleep(long ms)
 {
-	struct timeval	tv;
-	long	res;
+	long int	start_time;
+	long int	current_time;
 
-	res = 0;
-	if (gettimeofday(&tv, NULL) == -1)
+	start_time = get_current_time(0);
+	current_time = get_current_time(0);
+	while ((current_time - start_time) <= ms)
 	{
-		print_error("Bad time allocation.");
-		return (0);
+		usleep(100);
+		current_time = get_current_time(0);
 	}
-	res = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-	return (res - time);
 }
-

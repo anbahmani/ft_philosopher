@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 10:14:37 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/23 03:42:15 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/23 22:27:39 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ void	eating(t_philo *philo)
 {
 	taking_forks(philo);
 	write_philo_status(philo, "is eating");
-	pthread_mutex_lock(&philo->args.m_time_eat);
-	usleep(philo->args.time_to_eat);
-	pthread_mutex_unlock(&philo->args.m_time_eat);
-	philo->first_time = get_current_time();
+	ft_usleep((long) philo->args.time_to_eat);
+	philo->first_time = get_current_time(0);
 	pthread_mutex_unlock(&philo->fork);
 	pthread_mutex_unlock(&philo->next->fork);
-	pthread_mutex_lock(&philo->args.m_optional_arg);
+	pthread_mutex_lock(&philo->m_nb_eat);
 	if (philo->args.optional_arg)
 		philo->curr_nb_eat++;
-	pthread_mutex_unlock(&philo->args.m_optional_arg);
+	pthread_mutex_unlock(&philo->m_nb_eat);
 }

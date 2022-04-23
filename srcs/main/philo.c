@@ -6,25 +6,40 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 10:04:23 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/23 04:22:30 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 01:28:54 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	continue_checking(t_struct *s)
+bool	is_dead(t_philo *philo)
 {
-	pthread_mutex_lock(&s->args.m_optional_arg);
-	if (s->args.optional_arg)
+	bool dead;
+
+	pthread_mutex_lock(&philo->args.m_end);
+	dead = philo->args.end;
+	pthread_mutex_unlock(&philo->args.m_end);
+	return (dead);
+}
+
+void	*activities_loop(void *tmp)
+{
+	t_philo	*philo;
+	int		tmp_time;
+	
+	philo = (t_philo *)tmp;
+	if (philo->index % 2 == 0)
 	{
-		pthread_mutex_unlock(&s->args.m_optional_arg);
-		check_nb_eat_and_death(s);
+		tmp_time = philo->args.time_to_eat;
+		usleep(tmp_time / 10);
 	}
-	else 
+	while (is_dead(philo))
 	{
-		pthread_mutex_unlock(&s->args.m_optional_arg);
-		check_death(s);
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
 	}
+	return (philo);
 }
 
 void	start_activities(t_struct *s)
@@ -38,36 +53,17 @@ void	start_activities(t_struct *s)
 	{
 		if (pthread_create(&curr->th_philo, NULL, activities_loop, curr) != 0)
 		{
-			join_threads(curr, i - 1);
-			free_struct(&s->args, s->first_philo);
 			print_error("Issue during the threads creation.");
 			return ;
 		}
 		curr = curr->next;
 		i++;
 	}
-	continue_checking(s);
-}
-
-void	*activities_loop(t_philo *philo)
-{
-	int	tmp_time;
-	
-	if (philo->index % 2 == 0)
-	{
-		pthread_mutex_lock(&philo->args.m_time_eat);
-		tmp_time = philo->args.time_to_eat;
-		pthread_mutex_unlock(&philo->args.m_time_eat);
-		usleep(tmp_time / 10);
-	}
-	while (true)
-	{
-		philo->first_time = get_current_time();
-		eating(philo);
-		sleeping(philo);
-		thinking(philo);
-	}
-	return (philo);
+	if (s->args.optional_arg)
+		check_nb_eat_and_death(s);
+	else
+		check_death(s);
+	join_threads(s->first_philo, s->args.nb_philo);	
 }
 
 int	main(int ac, char **av)
@@ -87,4 +83,5 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	start_activities(&s);
+	//free
 }

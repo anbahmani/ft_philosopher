@@ -26,12 +26,13 @@ SRC			= 	ft_atoi.c \
 				write_status.c \
 				philo.c \
 				check_end.c \
+				ft_usleep.c \
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 # Compilation flags -------------------------------------------------
 
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -pthread -g3 -fsanitize=address
 
 IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
 

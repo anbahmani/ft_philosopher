@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 11:34:24 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/23 01:57:09 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 01:33:16 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	write_philo_status(t_philo *philo, char *status)
 {
 	unsigned long	time;
 	
-	pthread_mutex_lock(&philo->args.m_write_log);
 	pthread_mutex_lock(&philo->args.m_start_time);
-	time = get_current_time() - philo->args.start_time;
+	time = get_current_time(philo->args.start_time);
 	pthread_mutex_unlock(&philo->args.m_start_time);
+	pthread_mutex_lock(&philo->args.m_write_log);
 	printf("%lu %i %s\n", time, philo->index, status);
 	pthread_mutex_unlock(&philo->args.m_write_log);	
 }
