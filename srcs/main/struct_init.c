@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 15:13:09 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/24 02:24:57 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 10:03:30 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ t_args	*init_args(int ac, char **av)
 	args->time_to_eat = ft_atoi(av[3]);
 	args->time_to_sleep = ft_atoi(av[4]);
 	if (ac == 6)
-	{
-		args->optional_arg = true;
 		args->nb_eat = ft_atoi(av[5]);
-	}
 	else
-		args->optional_arg = false;
+		args->nb_eat = -1;
 	args->end = false;
 	args->start_time = get_current_time(0);
 	return (args);
@@ -48,9 +45,11 @@ void	init_philo(t_philo **p, int index, t_args *args)
 	}
 	(*p)->index = index;
 	(*p)->args = args;
+	(*p)->curr_nb_eat = 0;
 	(*p)->first_time = get_current_time(0);
 	pthread_mutex_init(&(*p)->fork, NULL);
 	pthread_mutex_init(&(*p)->m_nb_eat, NULL);
+	pthread_mutex_init(&(*p)->m_first_time, NULL);
 }
 
 void	init_all_philo(t_struct *s)
@@ -77,4 +76,9 @@ void	init_args_mutex(t_args *args)
 	pthread_mutex_init(&args->m_write_log, NULL);
 	pthread_mutex_init(&args->m_end, NULL);
 	pthread_mutex_init(&args->m_start_time, NULL);
+	pthread_mutex_init(&args->m_time_to_die, NULL);
+	pthread_mutex_init(&args->m_time_to_eat, NULL);
+	pthread_mutex_init(&args->m_time_to_sleep, NULL);
+	pthread_mutex_init(&args->m_nb_eat, NULL);
+	pthread_mutex_init(&args->m_nb_philo, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 10:04:23 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/24 02:28:13 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 10:44:02 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,11 @@ bool	is_dead(t_philo *philo)
 void	*activities_loop(void *tmp)
 {
 	t_philo	*philo;
-	int		tmp_time;
 
 	philo = (t_philo *)tmp;
 	if (philo->index % 2 == 0)
-	{
-		tmp_time = philo->args->time_to_eat;
-		usleep(tmp_time / 10);
-	}
-	while (!is_dead(philo))
+		usleep(get_time_to_eat(philo->args) / 2);
+	while (!is_dead(philo) && !check_nb_eat(philo, get_nb_eat(philo->args)))
 	{
 		eating(philo);
 		sleeping(philo);
@@ -59,7 +55,7 @@ void	start_activities(t_struct *s)
 		curr = curr->next;
 		i++;
 	}
-	if (s->args->optional_arg)
+	if (get_nb_eat(s->args) != -1)
 		check_nb_eat_and_death(s);
 	else
 		check_death(s);
@@ -83,5 +79,5 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	start_activities(&s);
-	//free
+	free_struct(s.args, s.first_philo);
 }
