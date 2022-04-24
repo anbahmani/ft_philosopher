@@ -32,7 +32,7 @@ OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
 # Compilation flags -------------------------------------------------
 
-CFLAGS		=	-Wall -Wextra -Werror -pthread -g3 -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -pthread
 
 IFLAGS		=	$(foreach dir, $(INC_DIR), -I $(dir))
 

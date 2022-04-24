@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/23 03:55:34 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/24 01:27:17 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 02:25:36 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void	check_nb_eat_and_death(t_struct *s)
 	while (true)
 	{
 		if ((int) get_current_time(0) - (int) p->first_time >= 
-			s->args.time_to_die)
+			s->args->time_to_die)
 		{
 			write_philo_status(p, "died");
-			set_end(&s->args);
+			set_end(s->args);
 			break ;
 		}
-		if (check_nb_eat(s->first_philo, s->args.nb_eat, s->args.nb_philo))
+		if (check_nb_eat(s->first_philo, s->args->nb_eat, s->args->nb_philo))
 		{
-			set_end(&s->args);
+			set_end(s->args);
 			break ;
 		}
 		p = p->next;
@@ -69,10 +69,10 @@ void	check_death(t_struct *s)
 	while (true)
 	{
 		if (get_current_time(p->first_time) >=
-			(long) s->args.time_to_die)
+			(long) s->args->time_to_die)
 		{
 			write_philo_status(p, "died");
-			set_end(&s->args);
+			set_end(s->args);
 			break ;
 		}
 		p = p->next;

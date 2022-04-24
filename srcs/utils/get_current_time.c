@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 03:23:17 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/24 01:33:11 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 01:44:39 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ long	get_current_time(long time)
 	struct timeval	tv;
 	long	res;
 
-	res = 0;
 	if (gettimeofday(&tv, NULL) == -1)
 	{
 		print_error("Bad time allocation.");

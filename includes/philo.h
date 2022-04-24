@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:31:50 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/23 22:25:36 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 02:22:40 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_philo
 	pthread_t		th_philo;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	m_nb_eat;
-	t_args			args;
+	t_args			*args;
 	long	first_time;
 	int				curr_nb_eat;
 	struct s_philo	*next;
@@ -53,7 +53,7 @@ typedef struct s_philo
 
 typedef struct s_struct
 {
-	t_args	args;
+	t_args	*args;
 	t_philo	*first_philo;
 }	t_struct;
 
@@ -62,7 +62,7 @@ t_args	*init_args(int ac, char **av);
 long	get_current_time(long time);
 void	free_struct(t_args *args, t_philo *philo);
 void	*activities_loop(void *tmp);
-void	init_philo(t_philo **p, int index, t_args args);
+void	init_philo(t_philo **p, int index, t_args *args);
 void	init_all_philo(t_struct *s);
 void	start_routine(t_struct *s);
 void	join_threads(t_philo *philo, int index);

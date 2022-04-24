@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/25 15:13:09 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/23 22:27:00 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 02:24:57 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_args	*init_args(int ac, char **av)
 	return (args);
 }
 
-void	init_philo(t_philo **p, int index, t_args args)
+void	init_philo(t_philo **p, int index, t_args *args)
 {
 	*p = malloc(sizeof(t_philo));
 	if (!p)
@@ -48,7 +48,7 @@ void	init_philo(t_philo **p, int index, t_args args)
 	}
 	(*p)->index = index;
 	(*p)->args = args;
-	(*p)->first_time = 0;
+	(*p)->first_time = get_current_time(0);
 	pthread_mutex_init(&(*p)->fork, NULL);
 	pthread_mutex_init(&(*p)->m_nb_eat, NULL);
 }
@@ -59,14 +59,14 @@ void	init_all_philo(t_struct *s)
 	t_philo *current_philo;
 	init_philo(&s->first_philo, 1, s->args);
 	if (s->first_philo == NULL)
-		return (free_struct(&s->args, s->first_philo));
+		return (free_struct(s->args, s->first_philo));
 	current_philo = s->first_philo;
 	index = 1;
-	while (++index <= s->args.nb_philo)
+	while (++index <= s->args->nb_philo)
 	{
 		init_philo(&current_philo->next, index, s->args);
 		if (!current_philo->next)
-			return (free_struct(&s->args, s->first_philo));
+			return (free_struct(s->args, s->first_philo));
 		current_philo = current_philo->next;
 	}
 	current_philo->next = s->first_philo;
