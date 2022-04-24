@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_current_time.c                                 :+:      :+:    :+:   */
+/*   sleeping.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 03:23:17 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/24 01:44:39 by abahmani         ###   ########.fr       */
+/*   Created: 2021/12/18 10:14:33 by abahmani          #+#    #+#             */
+/*   Updated: 2022/04/24 15:57:41 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	get_current_time(long time)
+void	sleeping(t_philo *philo)
 {
-	struct timeval	tv;
-	long	res;
-
-	if (gettimeofday(&tv, NULL) == -1)
+	if (!is_dead(philo))
 	{
-		print_error("Bad time allocation.");
-		return (0);
+		write_philo_status(philo, "is sleeping");
+		ft_usleep(get_time_to_sleep(philo->args));
 	}
-	res = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
-	return (res - time);
 }
-

@@ -6,11 +6,11 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 09:57:32 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/18 17:17:07 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 13:18:36 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "utils.h"
 
 static	int	pass_isspace(const char *str)
 {

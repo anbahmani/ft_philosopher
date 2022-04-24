@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 10:04:23 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/24 10:44:02 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 16:04:00 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	is_dead(t_philo *philo)
 {
-	bool dead;
+	bool	dead;
 
 	pthread_mutex_lock(&philo->args->m_end);
 	dead = philo->args->end;
@@ -40,7 +40,7 @@ void	*activities_loop(void *tmp)
 
 void	start_activities(t_struct *s)
 {
-	int	i;
+	int		i;
 	t_philo	*curr;
 
 	i = 1;
@@ -50,6 +50,7 @@ void	start_activities(t_struct *s)
 		if (pthread_create(&curr->th_philo, NULL, activities_loop, curr) != 0)
 		{
 			print_error("Issue during the threads creation.");
+			free_struct(s->args, s->first_philo);
 			return ;
 		}
 		curr = curr->next;
@@ -59,12 +60,12 @@ void	start_activities(t_struct *s)
 		check_nb_eat_and_death(s);
 	else
 		check_death(s);
-	join_threads(s->first_philo, s->args->nb_philo);	
+	join_threads(s->first_philo, s->args->nb_philo);
 }
 
 int	main(int ac, char **av)
 {
-	t_args	*args;
+	t_args		*args;
 	t_struct	s;
 
 	if (!check_args(ac, av))
@@ -72,7 +73,7 @@ int	main(int ac, char **av)
 	args = init_args(ac, av);
 	s.args = args;
 	init_all_philo(&s);
-	init_args_mutex(args);
+	init_args_mutex(&s);
 	if (!s.first_philo)
 	{
 		print_error("Issue during the philo allocation.");

@@ -6,7 +6,7 @@
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/24 00:32:12 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/19 17:22:51 by abahmani         ###   ########.fr       */
+/*   Updated: 2022/04/24 15:10:53 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ static bool	check_overflow(char *s)
 */
 static bool	check_args_value(char *nb, int index)
 {
-	if (index == 1 && ft_atoi(nb) > 200)
+	if (index == 1 && (ft_atoi(nb) > 200 || ft_atoi(nb) <= 0))
 	{
-		print_error("Incorrect number of philosophers {0-200}.");
+		print_error("Incorrect number of philosophers {1-200}.");
 		return (false);
 	}
 	else if (index > 1 && index <= 4 && ft_atoi(nb) < 60)
@@ -113,7 +113,7 @@ static bool	check_is_args_number(int ac, char **av)
 		}
 		if (!check_overflow(av[i]))
 		{
-			print_error("Int overflow on a argument.");
+			print_error("Int overflow on an argument.");
 			return (false);
 		}
 		if (!check_args_value(av[i], i))

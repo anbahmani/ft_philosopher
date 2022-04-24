@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setter.c                                           :+:      :+:    :+:   */
+/*   get_current_time.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abahmani <abahmani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/24 07:28:27 by abahmani          #+#    #+#             */
-/*   Updated: 2022/04/24 07:32:27 by abahmani         ###   ########.fr       */
+/*   Created: 2022/04/10 03:23:17 by abahmani          #+#    #+#             */
+/*   Updated: 2022/04/24 15:18:47 by abahmani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	set_philo_first_time(t_philo *philo, long new_time)
+long	get_current_time(long time)
 {
-	pthread_mutex_lock(&philo->m_first_time);
-	philo->first_time = new_time;
-	pthread_mutex_unlock(&philo->m_first_time);
+	struct timeval	tv;
+	long			res;
+
+	if (gettimeofday(&tv, NULL) == -1)
+	{
+		print_error("Bad time allocation.");
+		return (0);
+	}
+	res = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
+	return (res - time);
 }

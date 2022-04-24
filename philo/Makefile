@@ -29,7 +29,6 @@ SRC			= 	ft_atoi.c \
 				ft_usleep.c \
 				getter.c \
 				getter2.c \
-				setter.c \
 
 OBJ			=	$(addprefix $(OBJ_DIR)/, $(SRC:%.c=%.o))
 
